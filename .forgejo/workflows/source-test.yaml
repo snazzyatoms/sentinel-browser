@@ -98,7 +98,7 @@ jobs:
         with:
           name: linux-test
           path: |
-            librewolf-*.tar.xz
+            sentinel-*.tar.xz
             mozconfig.txt
           retention-days: ${{ github.event_name == 'push' && 3 || 14 }}
 
@@ -129,7 +129,7 @@ jobs:
         with:
           name: windows-test
           path: |
-            librewolf-*.zip
+            sentinel-*.zip
             mozconfig.txt
           retention-days: ${{ github.event_name == 'push' && 3 || 14 }}
 
@@ -160,6 +160,6 @@ jobs:
         with:
           name: macos-test
           path: |
-            librewolf-*.tar.gz
+            sentinel-*.tar.gz
             mozconfig.txt
           retention-days: ${{ github.event_name == 'push' && 3 || 14 }}

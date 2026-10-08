@@ -7,7 +7,7 @@ index 0d6109c..3bd8454 100644
            async get(keys) {
              enforceNoTemporaryAddon(extension.id);
 +            const assetsBootstrapLocation = Services.prefs.getStringPref(
-+              "librewolf.uBO.assetsBootstrapLocation",
++              "sentinel.uBO.assetsBootstrapLocation",
 +              undefined
 +            );
 +            if (extension.id == "uBlock0@raymondhill.net" && assetsBootstrapLocation) {

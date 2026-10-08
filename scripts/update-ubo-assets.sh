@@ -12,7 +12,7 @@ assets=$(curl https://raw.githubusercontent.com/gorhill/uBlock/master/assets/ass
 echo "-> Overwriting assets.json update location"
 assets=$(echo "$assets" | jq '
   del(.["assets.json"].cdnURLs) |
-  .["assets.json"].contentURL = "https://librewolf.dev/librewolf/source/src/branch/main/assets/uBOAssets.json"
+  .["assets.json"].contentURL = "https://raw.githubusercontent.com/snazzyatoms/sentinel-browser/main/assets/uBOAssets.json"
 ')
 
 # Enable some filter lists that are disabled by default

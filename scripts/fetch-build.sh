@@ -4,20 +4,20 @@ set -e
 
 fetch_and_extract() {
     rm -rf version source_release
-    curl -so version "https://librewolf.dev/librewolf/source/raw/branch/main/version"
-    curl -so source_release "https://librewolf.dev/librewolf/source/raw/branch/main/release"
+    curl -so version "https://raw.githubusercontent.com/snazzyatoms/sentinel-browser/main/version"
+    curl -so source_release "https://raw.githubusercontent.com/snazzyatoms/sentinel-browser/main/release"
 
-    rm -f "librewolf-$(cat version)-$(cat source_release).source.tar.gz"
-    curl -so "librewolf-$(cat version)-$(cat source_release).source.tar.gz" "https://librewolf.dev/api/packages/librewolf/generic/librewolf-source/$(cat version)-$(cat source_release)/librewolf-$(cat version)-$(cat source_release).source.tar.gz"
+    rm -f "sentinel-$(cat version)-$(cat source_release).source.tar.gz"
+    curl -so "sentinel-$(cat version)-$(cat source_release).source.tar.gz" "https://github.com/snazzyatoms/sentinel-browser/releases/download/v$(cat version)-$(cat source_release)/sentinel-$(cat version)-$(cat source_release).source.tar.gz"
 
-    rm -rf librewolf-$(cat version)
-    tar xf librewolf-$(cat version)-$(cat source_release).source.tar.gz
+    rm -rf sentinel-$(cat version)
+    tar xf sentinel-$(cat version)-$(cat source_release).source.tar.gz
 
     # here would be a great spot to insert system dependent stuff like mozconfig/patches.
 }
 
 build() {
-    cd librewolf-$(cat version)
+    cd sentinel-$(cat version)
       ./mach build
       ./mach package
     cd ..

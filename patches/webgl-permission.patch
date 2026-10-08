@@ -218,7 +218,7 @@ index 5aaa427..52b587f 100644
  #include "mozilla/RandomNum.h"
  #include "mozilla/ResultVariant.h"
  #include "mozilla/ScopeExit.h"
-+#include "mozilla/StaticPrefs_librewolf.h"
++#include "mozilla/StaticPrefs_sentinel.h"
  #include "mozilla/StaticPrefs_webgl.h"
 +#include "mozilla/dom/BrowserChild.h"
  #include "mozilla/dom/BufferSourceBinding.h"
@@ -288,7 +288,7 @@ index 5aaa427..52b587f 100644
 +      break;
 +  }
 +
-+  bool hidePermissionDoorhanger = StaticPrefs::librewolf_webgl_prompt_hide();
++  bool hidePermissionDoorhanger = StaticPrefs::sentinel_webgl_prompt_hide();
 +
 +  nsAutoString message;
 +  message.AppendPrintf(
@@ -307,7 +307,7 @@ index 5aaa427..52b587f 100644
 +    return false;
 +  }
 +
-+  const bool webGLPromptEnabled = StaticPrefs::librewolf_webgl_prompt();
++  const bool webGLPromptEnabled = StaticPrefs::sentinel_webgl_prompt();
 +
 +  if (!webGLPromptEnabled) {
 +    return true;
@@ -355,7 +355,7 @@ index 5aaa427..52b587f 100644
 +    return false;
 +  }
 +
-+  const bool webGLPromptEnabled = StaticPrefs::librewolf_webgl_prompt();
++  const bool webGLPromptEnabled = StaticPrefs::sentinel_webgl_prompt();
 +
 +  if (!webGLPromptEnabled) {
 +    return true;

@@ -10,7 +10,7 @@ index 467b01f..4239d5e 100644
 +    let records = [];
      try {
 -      records = await this.wallpaperClient.get();
-+      if (Services.prefs.getBoolPref("librewolf.externalWallpapers.enabled", false)) {
++      if (Services.prefs.getBoolPref("sentinel.externalWallpapers.enabled", false)) {
 +        records = await this.wallpaperClient.get();
 +      }
      } catch (error) {

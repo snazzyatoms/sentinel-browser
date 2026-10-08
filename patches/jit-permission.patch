@@ -7,7 +7,7 @@ index 16b222280f..d73e3c878c 100644
  });
  
 +const IDENTITY_JIT_PERMISSION = "jit";
-+const IDENTITY_JIT_PREF = "librewolf.jit.enabled-by-default";
++const IDENTITY_JIT_PREF = "sentinel.jit.enabled-by-default";
 +
  /**
   * Utility object to handle manipulations of the identity indicators in the UI
@@ -163,7 +163,7 @@ index 544866fac7..3b692ef7bf 100644
  ];
  
 +const TRUST_JIT_PERMISSION = "jit";
-+const TRUST_JIT_PREF = "librewolf.jit.enabled-by-default";
++const TRUST_JIT_PREF = "sentinel.jit.enabled-by-default";
 +
  class TrustPanel {
    #state = null;
@@ -366,7 +366,7 @@ index a1b725eafb..dd0546ba71 100644
  #include "mozilla/RefPtr.h"
  #include "mozilla/StaticPrefs_browser.h"
  #include "mozilla/StaticPrefs_fission.h"
-+#include "mozilla/StaticPrefs_librewolf.h"
++#include "mozilla/StaticPrefs_sentinel.h"
  #include "mozilla/StaticPtr.h"
  #include "mozilla/dom/BrowsingContextGroup.h"
  #include "mozilla/dom/CanonicalBrowsingContext.h"
@@ -447,7 +447,7 @@ index a1b725eafb..dd0546ba71 100644
 +static bool JITEnabledForSiteOrigin(nsIURI* aSiteOriginURI,
 +                                    WindowGlobalParent* aParentWindow,
 +                                    nsIPrincipal* aPrincipal) {
-+  bool enabled = StaticPrefs::librewolf_jit_enabled_by_default();
++  bool enabled = StaticPrefs::sentinel_jit_enabled_by_default();
 +
 +  if (!aSiteOriginURI || !aPrincipal || !aPrincipal->GetIsContentPrincipal()) {
 +    return enabled;

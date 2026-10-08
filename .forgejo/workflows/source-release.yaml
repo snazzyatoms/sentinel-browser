@@ -12,7 +12,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v6
 
-      - name: Make LibreWolf source archive
+      - name: Make Sentinel source archive
         env:
             SIGNING_KEY: ${{ forgejo.ref == 'refs/heads/main' && secrets.SIGNING_KEY || '' }}
         run: |
@@ -21,12 +21,12 @@ jobs:
       - name: Upload artifacts
         uses: https://data.forgejo.org/forgejo/upload-artifact@v4
         with:
-          name: librewolf-source
+          name: sentinel-source
           path: |
-            librewolf-*.source.tar.gz
-            librewolf-*.source.tar.gz.sha256sum
-            librewolf-*.source.tar.gz.sha512sum
-            librewolf-*.source.tar.gz.sig
+            sentinel-*.source.tar.gz
+            sentinel-*.source.tar.gz.sha256sum
+            sentinel-*.source.tar.gz.sha512sum
+            sentinel-*.source.tar.gz.sig
             patchfail-fuzz.out
           retention-days: 7
 
@@ -62,17 +62,17 @@ jobs:
           fi
 
           FILES=(
-            "librewolf-${{ steps.version.outputs.VERSION }}-${{ steps.version.outputs.RELEASE }}.source.tar.gz"
-            "librewolf-${{ steps.version.outputs.VERSION }}-${{ steps.version.outputs.RELEASE }}.source.tar.gz.sha256sum"
-            "librewolf-${{ steps.version.outputs.VERSION }}-${{ steps.version.outputs.RELEASE }}.source.tar.gz.sha512sum"
+            "sentinel-${{ steps.version.outputs.VERSION }}-${{ steps.version.outputs.RELEASE }}.source.tar.gz"
+            "sentinel-${{ steps.version.outputs.VERSION }}-${{ steps.version.outputs.RELEASE }}.source.tar.gz.sha256sum"
+            "sentinel-${{ steps.version.outputs.VERSION }}-${{ steps.version.outputs.RELEASE }}.source.tar.gz.sha512sum"
           )
 
           if [[ -n "$SIGNING_KEY" ]]; then
-            FILES+=("librewolf-${{ steps.version.outputs.VERSION }}-${{ steps.version.outputs.RELEASE }}.source.tar.gz.sig")
+            FILES+=("sentinel-${{ steps.version.outputs.VERSION }}-${{ steps.version.outputs.RELEASE }}.source.tar.gz.sig")
           fi
 
           for FILE in "${FILES[@]}"; do
-            curl --http1.1 --user "${{ vars.FORGE_USER }}:${{ secrets.FORGE_TOKEN }}" --upload-file "${FILE}" "${{ forgejo.server_url }}/api/packages/${{ forgejo.repository_owner }}/generic/librewolf-source/${{ steps.version.outputs.VERSION }}-${{ steps.version.outputs.RELEASE }}/${FILE}" >&2
+            curl --http1.1 --user "${{ vars.FORGE_USER }}:${{ secrets.FORGE_TOKEN }}" --upload-file "${FILE}" "${{ forgejo.server_url }}/api/packages/${{ forgejo.repository_owner }}/generic/sentinel-source/${{ steps.version.outputs.VERSION }}-${{ steps.version.outputs.RELEASE }}/${FILE}" >&2
           done
 
       - name: Upload to S3
@@ -94,17 +94,17 @@ jobs:
           TAG="${{ steps.version.outputs.VERSION }}-${{ steps.version.outputs.RELEASE }}"
 
           FILES=(
-            "librewolf-${TAG}.source.tar.gz"
-            "librewolf-${TAG}.source.tar.gz.sha256sum"
-            "librewolf-${TAG}.source.tar.gz.sha512sum"
+            "sentinel-${TAG}.source.tar.gz"
+            "sentinel-${TAG}.source.tar.gz.sha256sum"
+            "sentinel-${TAG}.source.tar.gz.sha512sum"
           )
 
           if [[ -n "$SIGNING_KEY" ]]; then
-            FILES+=("librewolf-${TAG}.source.tar.gz.sig")
+            FILES+=("sentinel-${TAG}.source.tar.gz.sig")
           fi
 
           for FILE in "${FILES[@]}"; do
-            S3_PATH="/librewolf-source/${TAG}/${FILE}"
+            S3_PATH="/sentinel-source/${TAG}/${FILE}"
             echo "-> Uploading ${FILE} to S3" >&2
             if ! s3cmd put "${FILE}" "s3://${S3_BUCKET}${S3_PATH}" \
               --access_key="$S3_KEY" \
@@ -124,13 +124,13 @@ jobs:
           SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
         run: |
           TAG="${{ steps.version.outputs.VERSION }}-${{ steps.version.outputs.RELEASE }}"
-          PACKAGE_BASE="${{ forgejo.server_url }}/api/packages/${{ forgejo.repository_owner }}/generic/librewolf-source/${TAG}"
+          PACKAGE_BASE="${{ forgejo.server_url }}/api/packages/${{ forgejo.repository_owner }}/generic/sentinel-source/${TAG}"
 
           # Create release
           body=$(jq -n \
             --arg tag "$TAG" \
-            --arg name "LibreWolf Source v${TAG}" \
-            --arg body $'## LibreWolf Source Release v'"${TAG}"$'\n\nBuilt by workflow [#${{ forgejo.run_number }}](${{ forgejo.server_url }}/${{ forgejo.repository }}/actions/runs/${{ forgejo.run_number }})' \
+            --arg name "Sentinel Source v${TAG}" \
+            --arg body $'## Sentinel Source Release v'"${TAG}"$'\n\nBuilt by workflow [#${{ forgejo.run_number }}](${{ forgejo.server_url }}/${{ forgejo.repository }}/actions/runs/${{ forgejo.run_number }})' \
             '{tag_name: $tag, name: $name, body: $body, draft: false, prerelease: false}')
 
           release_id=$(curl --fail-with-body --header 'Content-Type: application/json' \
@@ -144,13 +144,13 @@ jobs:
 
           # Add external URL assets
           FILES=(
-            "librewolf-${TAG}.source.tar.gz"
-            "librewolf-${TAG}.source.tar.gz.sha256sum"
-            "librewolf-${TAG}.source.tar.gz.sha512sum"
+            "sentinel-${TAG}.source.tar.gz"
+            "sentinel-${TAG}.source.tar.gz.sha256sum"
+            "sentinel-${TAG}.source.tar.gz.sha512sum"
           )
 
           if [[ -n "$SIGNING_KEY" ]]; then
-            FILES+=("librewolf-${TAG}.source.tar.gz.sig")
+            FILES+=("sentinel-${TAG}.source.tar.gz.sig")
           fi
 
           for FILE in "${FILES[@]}"; do

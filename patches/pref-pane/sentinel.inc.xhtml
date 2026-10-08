@@ -1,0 +1,37 @@
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+<script src="chrome://browser/content/preferences/sentinel.js"/>
+
+<html:template id="template-paneSentinel">
+
+<hbox class="subcategory" hidden="true" data-category="paneSentinel">
+  <html:h1 data-l10n-id="sentinel-header"/>
+</hbox>
+
+<html:setting-group groupid="sentinelBehavior" data-category="paneSentinel" hidden="true"/>
+<html:setting-group groupid="sentinelNetworking" style="padding-top: 25px;" data-category="paneSentinel" hidden="true"/>
+<html:setting-group groupid="sentinelPrivacy" style="padding-top: 25px;" data-category="paneSentinel" hidden="true"/>
+<html:setting-group groupid="sentinelFingerprinting" style="padding-top: 25px;" data-category="paneSentinel" hidden="true"/>
+
+<hbox class="subcategory" hidden="true" data-category="paneSentinel" style="margin-top: 25px">
+    <html:h1 data-l10n-id="sentinel-footer"/>
+</hbox>
+
+<groupbox data-category="paneSentinel" hidden="true">
+  <vbox align="start">
+    <hbox>
+      <button id="sentinel-config-link" is="highlightable-button" flex="1">
+        <image class="sentinel-button-icon" src="chrome://browser/skin/preferences/category-general.svg" />
+        <label data-l10n-id="sentinel-config-link"></label>
+      </button>
+      <button id="sentinel-open-profile" is="highlightable-button" flex="1">
+        <image class="sentinel-button-icon" src="chrome://browser/skin/open.svg" />
+        <label data-l10n-id="sentinel-open-profile"></label>
+      </button>
+    </hbox>
+  </vbox>
+</groupbox>
+
+</html:template>

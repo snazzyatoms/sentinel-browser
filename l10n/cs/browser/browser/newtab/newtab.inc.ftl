@@ -1,3 +1,3 @@
-librewolf-external-wallpapers =
+sentinel-external-wallpapers =
     .label = Povolit načítání vzdálených tapet
     .description = Tato možnost vyžaduje restart prohlížeče

@@ -1,1 +1,1 @@
-identity-allow-site-data = LibreWolf: قم دائمًا بحفظ ملفات تعريف الارتباط/البيانات لهذا الموقع
+identity-allow-site-data = Sentinel: قم دائمًا بحفظ ملفات تعريف الارتباط/البيانات لهذا الموقع

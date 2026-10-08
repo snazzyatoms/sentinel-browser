@@ -26,7 +26,7 @@ index ad333a5..76ba937 100644
  let accountsEnabled = Services.prefs.getBoolPref("identity.fxaccounts.enabled");
  
 +Preferences.addSetting({
-+  id: "librewolfSync",
++  id: "sentinelSync",
 +  pref: "identity.fxaccounts.enabled",
 +  onUserChange() {
 +    confirmRestartPrompt(
@@ -59,8 +59,8 @@ index ad333a5..76ba937 100644
          },
        },
 +      {
-+        id: "librewolfSync",
-+        l10nId: "librewolf-sync-checkbox2",
++        id: "sentinelSync",
++        l10nId: "sentinel-sync-checkbox2",
 +      },
      ],
    },
@@ -70,8 +70,8 @@ index ad333a5..76ba937 100644
          ],
        },
 +      {
-+        id: "librewolfSync",
-+        l10nId: "librewolf-sync-checkbox2",
++        id: "sentinelSync",
++        l10nId: "sentinel-sync-checkbox2",
 +      },
      ],
    },
@@ -91,12 +91,12 @@ index 7675fab..5cd14dd 100644
 +  ]);
 +
 +  Preferences.addSetting({
-+    id: "librewolfUserChrome",
++    id: "sentinelUserChrome",
 +    pref: "toolkit.legacyUserProfileCustomizations.stylesheets",
 +  });
 +
 +  Preferences.addSetting({
-+    id: "librewolfNova",
++    id: "sentinelNova",
 +    pref: "browser.nova.enabled",
 +  });
 +}
@@ -109,12 +109,12 @@ index 7675fab..5cd14dd 100644
          },
        },
 +      {
-+        id: "librewolfNova",
-+        l10nId: "librewolf-nova-checkbox2",
++        id: "sentinelNova",
++        l10nId: "sentinel-nova-checkbox2",
 +      },
 +      {
-+        id: "librewolfUserChrome",
-+        l10nId: "librewolf-styling-checkbox2",
++        id: "sentinelUserChrome",
++        l10nId: "sentinel-styling-checkbox2",
 +      },
      ],
    },
@@ -172,8 +172,8 @@ index f32ccc4..1e4d6d9 100644
 +      // Firefox Accounts
 +      { id: "identity.fxaccounts.enabled", type: "bool" },
 +      // WebGL
-+      //{ id: "librewolf.webgl.prompt", type: "bool" }, // Already added (see lw-permissions.patch)
-+      { id: "librewolf.webgl.prompt.hide", type: "bool" },
++      //{ id: "sentinel.webgl.prompt", type: "bool" }, // Already added (see lw-permissions.patch)
++      { id: "sentinel.webgl.prompt.hide", type: "bool" },
 +      // Automatically Update Extensions
 +      { id: "extensions.update.enabled", type: "bool" },
 +      { id: "extensions.update.autoUpdateDefault", type: "bool" },
@@ -192,35 +192,35 @@ index f32ccc4..1e4d6d9 100644
 +      /**** Prefs that require changing a lockPref ****/
 +      // Google safe browsing check downloads
 +      //{ id: "browser.safebrowsing.downloads.enabled", type: "bool" }, //Also already added
-+      { id: "librewolf.jit.enabled-by-default", type: "bool" },
++      { id: "sentinel.jit.enabled-by-default", type: "bool" },
 +  ]);
 +
 +  Preferences.addSetting({
-+    id: "librewolfExtensionUpdateEnabled",
++    id: "sentinelExtensionUpdateEnabled",
 +    pref: "extensions.update.enabled",
 +  });
 +  Preferences.addSetting({
-+    id: "librewolfExtensionAutoUpdateEnabled",
++    id: "sentinelExtensionAutoUpdateEnabled",
 +    pref: "extensions.update.autoUpdateDefault",
 +  });
 +  Preferences.addSetting({
-+    id: "librewolfExtensionUpdate",
-+    deps: ["librewolfExtensionUpdateEnabled","librewolfExtensionAutoUpdateEnabled"],
-+    get: (_, deps) => deps.librewolfExtensionUpdateEnabled.value && deps.librewolfExtensionAutoUpdateEnabled.value,
++    id: "sentinelExtensionUpdate",
++    deps: ["sentinelExtensionUpdateEnabled","sentinelExtensionAutoUpdateEnabled"],
++    get: (_, deps) => deps.sentinelExtensionUpdateEnabled.value && deps.sentinelExtensionAutoUpdateEnabled.value,
 +    set: (value, deps) => {
-+        deps.librewolfExtensionUpdateEnabled.value = value;
-+        deps.librewolfExtensionAutoUpdateEnabled.value = value;
++        deps.sentinelExtensionUpdateEnabled.value = value;
++        deps.sentinelExtensionAutoUpdateEnabled.value = value;
 +    },
 +  });
 +  Preferences.addSetting({
-+  id: "librewolfIPv6",
++  id: "sentinelIPv6",
 +  pref: "network.dns.disableIPv6",
 +  get: (value) => value.value = !value,
 +  set: (value) => value.value = !value,
 +});
 +
 +  Preferences.addSetting({
-+    id: "librewolfCrossOrigin",
++    id: "sentinelCrossOrigin",
 +    pref: "network.http.referer.XOriginPolicy",
 +    get: (value) => {
 +      if (value == 2) {
@@ -233,17 +233,17 @@ index f32ccc4..1e4d6d9 100644
 +  });
 +
 +  Preferences.addSetting({
-+    id: "librewolfRFP",
++    id: "sentinelRFP",
 +    pref: "privacy.resistFingerprinting",
 +  });
 +  Preferences.addSetting({
-+    id: "librewolfLetterboxing",
++    id: "sentinelLetterboxing",
 +    pref: "privacy.resistFingerprinting.letterboxing",
 +  });
 +
 +  Preferences.addSetting({
-+    id: "librewolfJIT",
-+    pref: "librewolf.jit.enabled-by-default",
++    id: "sentinelJIT",
++    pref: "sentinel.jit.enabled-by-default",
 +    get: (value) => value.value = !value,
 +    set: (value) => value.value = !value,
 +  });
@@ -304,20 +304,20 @@ index f32ccc4..1e4d6d9 100644
        {
 -        id: "privacyCard",
 -        control: "security-privacy-card",
-+        id: "librewolfExtensionUpdate",
-+        l10nId: "librewolf-extension-update-checkbox2",
++        id: "sentinelExtensionUpdate",
++        l10nId: "sentinel-extension-update-checkbox2",
 +      },
 +      {
-+        id: "librewolfIPv6",
-+        l10nId: "librewolf-ipv6-checkbox2",
++        id: "sentinelIPv6",
++        l10nId: "sentinel-ipv6-checkbox2",
 +      },
 +      {
-+        id: "librewolfCrossOrigin",
-+        l10nId: "librewolf-xorigin-ref-checkbox2",
++        id: "sentinelCrossOrigin",
++        l10nId: "sentinel-xorigin-ref-checkbox2",
 +      },
 +      {
-+        id: "librewolfJIT",
-+        l10nId: "librewolf-jit-checkbox2",
++        id: "sentinelJIT",
++        l10nId: "sentinel-jit-checkbox2",
 +        supportPage: "jit-toggle",
        },
      ],
@@ -326,7 +326,7 @@ index f32ccc4..1e4d6d9 100644
 -    inProgress: true,
 -    card: "never",
 +  fingerPrinting: {
-+    l10nId: "librewolf-broken-heading2",
++    l10nId: "sentinel-broken-heading2",
 +    headingLevel: 2,
      items: [
        {
@@ -346,20 +346,20 @@ index f32ccc4..1e4d6d9 100644
 -            },
 -          },
 -        ],
-+        id: "librewolfRFP",
-+        l10nId: "librewolf-rfp-checkbox2",
++        id: "sentinelRFP",
++        l10nId: "sentinel-rfp-checkbox2",
 +      },
 +      {
-+        id: "librewolfLetterboxing",
-+        l10nId: "librewolf-letterboxing-checkbox2",
++        id: "sentinelLetterboxing",
++        l10nId: "sentinel-letterboxing-checkbox2",
 +      },
 +      {
-+        id: "librewolfWebGLPrompt",
-+        l10nId: "librewolf-webgl-checkbox2",
++        id: "sentinelWebGLPrompt",
++        l10nId: "sentinel-webgl-checkbox2",
 +      },
 +      {
-+        id: "librewolfWebGLPromptHide",
-+        l10nId: "librewolf-webgl-prompt-checkbox2",
++        id: "sentinelWebGLPromptHide",
++        l10nId: "sentinel-webgl-prompt-checkbox2",
        },
      ],
    },
@@ -395,7 +395,7 @@ index f32ccc4..1e4d6d9 100644
      inProgress: true,
      headingLevel: 2,
 -    l10nId: "preferences-etp-advanced-settings-group",
-+    l10nId: "librewolf-etp",
++    l10nId: "sentinel-etp",
      supportPage: "enhanced-tracking-protection",
 +    iconSrc: "chrome://browser/skin/controlcenter/tracking-protection.svg",
      items: [
@@ -466,38 +466,38 @@ index 50ba8c2da3..06a5c0073a 100644
    ]);
 +
 +  Preferences.addSetting({
-+    id: "librewolfAutocopy",
++    id: "sentinelAutocopy",
 +    pref: "clipboard.autocopy",
 +  });
 +  Preferences.addSetting({
-+    id: "librewolfPaste",
++    id: "sentinelPaste",
 +    pref: "middlemouse.paste",
 +  });
 +  Preferences.addSetting({
-+    id: "librewolfMiddleClick",
-+    deps: ["librewolfAutocopy", "librewolfPaste"],
-+    get: (_, deps) => deps.librewolfAutocopy.value && deps.librewolfPaste.value,
++    id: "sentinelMiddleClick",
++    deps: ["sentinelAutocopy", "sentinelPaste"],
++    get: (_, deps) => deps.sentinelAutocopy.value && deps.sentinelPaste.value,
 +    set: (value, deps) => {
-+      deps.librewolfAutocopy.value = value;
-+      deps.librewolfPaste.value = value;
++      deps.sentinelAutocopy.value = value;
++      deps.sentinelPaste.value = value;
 +    },
 +  });
 +
 +  Preferences.addSetting({
-+    id: "librewolfJXL",
++    id: "sentinelJXL",
 +    pref: "image.jxl.enabled",
 +  });
 +
 +  Preferences.addSetting({
-+    id: "librewolfGMPManager",
++    id: "sentinelGMPManager",
 +    pref: "media.gmp-manager.updateEnabled",
 +  });
 +  Preferences.addSetting({
-+    id: "librewolfGMPh264Enabled",
++    id: "sentinelGMPh264Enabled",
 +    pref: "media.gmp-gmpopenh264.enabled",
 +  });
 +  Preferences.addSetting({
-+    id: "librewolfGMPWidevineEnabled",
++    id: "sentinelGMPWidevineEnabled",
 +    pref: "media.gmp-widevinecdm.enabled",
 +  });
  }
@@ -507,7 +507,7 @@ index 50ba8c2da3..06a5c0073a 100644
  Preferences.addSetting({
    id: "playDRMContent",
    pref: "media.eme.enabled",
-+  deps: ["librewolfGMPManager", "librewolfGMPWidevineEnabled", "librewolfh264"],
++  deps: ["sentinelGMPManager", "sentinelGMPWidevineEnabled", "sentinelh264"],
    visible: () => {
      if (!Services.prefs.getBoolPref("browser.eme.ui.enabled", false)) {
        return false;
@@ -517,23 +517,23 @@ index 50ba8c2da3..06a5c0073a 100644
    },
 +  get: (val, deps) =>
 +    val &&
-+    deps.librewolfGMPManager.value &&
-+    deps.librewolfGMPWidevineEnabled.value,
++    deps.sentinelGMPManager.value &&
++    deps.sentinelGMPWidevineEnabled.value,
 +  set: (val, deps) => {
-+    deps.librewolfGMPManager.value = val || deps.librewolfh264.value;
-+    deps.librewolfGMPWidevineEnabled.value = val;
++    deps.sentinelGMPManager.value = val || deps.sentinelh264.value;
++    deps.sentinelGMPWidevineEnabled.value = val;
 +    return val;
 +  },
 +});
 +
 +Preferences.addSetting({
-+  id: "librewolfh264",
-+  deps: ["librewolfGMPManager", "librewolfGMPh264Enabled", "playDRMContent"],
++  id: "sentinelh264",
++  deps: ["sentinelGMPManager", "sentinelGMPh264Enabled", "playDRMContent"],
 +  get: (_, deps) =>
-+    deps.librewolfGMPManager.value && deps.librewolfGMPh264Enabled.value,
++    deps.sentinelGMPManager.value && deps.sentinelGMPh264Enabled.value,
 +  set: (val, deps) => {
-+    deps.librewolfGMPManager.value = val || deps.playDRMContent.value;
-+    deps.librewolfGMPh264Enabled.value = val;
++    deps.sentinelGMPManager.value = val || deps.playDRMContent.value;
++    deps.sentinelGMPh264Enabled.value = val;
 +  },
  });
  
@@ -543,12 +543,12 @@ index 50ba8c2da3..06a5c0073a 100644
      ],
    },
 +  mouse: {
-+    l10nId: "librewolf-mouse-heading2",
++    l10nId: "sentinel-mouse-heading2",
 +    headingLevel: 2,
 +    items: [
 +      {
-+        id: "librewolfMiddleClick",
-+        l10nId: "librewolf-autocopy-checkbox2",
++        id: "sentinelMiddleClick",
++        l10nId: "sentinel-autocopy-checkbox2",
 +      },
 +    ],
 +  },
@@ -560,13 +560,13 @@ index 50ba8c2da3..06a5c0073a 100644
          supportPage: "drm-content",
        },
 +      {
-+        id: "librewolfh264",
-+        l10nId: "librewolf-h264",
++        id: "sentinelh264",
++        l10nId: "sentinel-h264",
 +        supportPage: "open-h264-plugin-firefox",
 +      },
 +      {
-+        id: "librewolfJXL",
-+        l10nId: "librewolf-JXL",
++        id: "sentinelJXL",
++        l10nId: "sentinel-JXL",
 +      },
      ],
    },
@@ -580,7 +580,7 @@ index 5a56d34..bc180bb 100644
    const isDefaultPane = {
      id: "isDefaultPane",
 -    l10nId: "is-default-browser-2",
-+    l10nId: "librewolf-is-default-browser-2",
++    l10nId: "sentinel-is-default-browser-2",
      control: "moz-promo",
 -    controlAttrs: {
 -      imagesrc: "chrome://global/skin/illustrations/kit-happy.svg",
@@ -591,7 +591,7 @@ index 5a56d34..bc180bb 100644
    const isNotDefaultPane = {
      id: "isNotDefaultPane",
 -    l10nId: "is-not-default-browser-2",
-+    l10nId: "librewolf-is-not-default-browser-2",
++    l10nId: "sentinel-is-not-default-browser-2",
      control: "moz-promo",
      options: [
        {
@@ -655,9 +655,9 @@ index 94612d8..4c82403 100644
      register_module("paneGeneral", gMainPane);
      document.getElementById("category-general").hidden = false;
      document.getElementById("nav-separator").hidden = true;
-+    register_module("paneLibrewolf", gLibrewolfPane);
++    register_module("paneSentinel", gSentinelPane);
 +  } else {
-+    document.getElementById("category-librewolf").hidden = true;
++    document.getElementById("category-sentinel").hidden = true;
    }
    register_module("paneHome", gHomePane);
    register_module("paneSearch", gSearchPane);
@@ -685,7 +685,7 @@ index b5531acdfb..8da3b051fd 100644
 +      <html:moz-page-nav-button id="toggleButton"
 +        slot="secondary-nav"
 +        iconsrc="chrome://global/skin/icons/swap-horizontal-20.svg"
-+        data-l10n-id="librewolf-swap-settings">
++        data-l10n-id="sentinel-swap-settings">
 +      </html:moz-page-nav-button>
      </html:moz-page-nav>
  
@@ -725,7 +725,7 @@ index 4562efc..bd99654 100644
          type: "bool",
          inverted: true,
        },
-+      { id: "librewolf.externalWallpapers.enabled", type: "bool" },
++      { id: "sentinel.externalWallpapers.enabled", type: "bool" },
        {
          id: "browser.newtabpage.activity-stream.system.showWeather",
          type: "bool",
@@ -734,8 +734,8 @@ index 4562efc..bd99654 100644
      }
  
 +    Preferences.addSetting({
-+      id: "librewolfExternalWallpapers",
-+      pref: "librewolf.externalWallpapers.enabled",
++      id: "sentinelExternalWallpapers",
++      pref: "sentinel.externalWallpapers.enabled",
 +    });
 +
      // Search
@@ -786,8 +786,8 @@ index 4562efc..bd99654 100644
            ],
          },
 +       {
-+         id: "librewolfExternalWallpapers",
-+         l10nId: "librewolf-external-wallpapers",
++         id: "sentinelExternalWallpapers",
++         l10nId: "sentinel-external-wallpapers",
 +         control: "moz-toggle",
 +       },
          {
@@ -802,15 +802,15 @@ index da21558..993966b 100644
    skin/classic/browser/searchbar.css                           (../shared/search/searchbar.css)
  
 -  skin/classic/browser/sidebar/firefox.svg                     (../shared/sidebar/firefox.svg)
-+  skin/classic/browser/sidebar/firefox.svg                     (../shared/sidebar/librewolf.svg)
++  skin/classic/browser/sidebar/firefox.svg                     (../shared/sidebar/sentinel.svg)
    skin/classic/browser/sidebar/foxy.svg                        (../shared/sidebar/foxy.svg)
    skin/classic/browser/sidebar/gmail.svg                       (../shared/sidebar/gmail.svg)
    skin/classic/browser/sidebar/slack.svg                       (../shared/sidebar/slack.svg)
-diff --git a/browser/themes/shared/sidebar/librewolf.svg b/browser/themes/shared/sidebar/librewolf.svg
+diff --git a/browser/themes/shared/sidebar/sentinel.svg b/browser/themes/shared/sidebar/sentinel.svg
 new file mode 100644
 index 0000000..7c552cc
 --- /dev/null
-+++ b/browser/themes/shared/sidebar/librewolf.svg
++++ b/browser/themes/shared/sidebar/sentinel.svg
 @@ -0,0 +1,91 @@
 +<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 +<!-- Created with Inkscape (http://www.inkscape.org/) -->
@@ -822,7 +822,7 @@ index 0000000..7c552cc
 +   version="1.1"
 +   id="svg8"
 +   inkscape:version="1.4.4 (dcaf3e7d9e, 2026-05-05)"
-+   sodipodi:docname="librewolf.svg"
++   sodipodi:docname="sentinel.svg"
 +   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
 +   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
 +   xmlns="http://www.w3.org/2000/svg"
@@ -912,7 +912,7 @@ index bd2f95db2d..23ed1d8e90 100644
     * @see BACKUP_DIR_NAME
     */
 -  static #backupFolderName = "Restore Firefox";
-+  static #backupFolderName = "Restore LibreWolf";
++  static #backupFolderName = "Restore Sentinel";
  
    /**
     * The name of the backup archive file. Should be localized.

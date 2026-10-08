@@ -8,7 +8,7 @@ index abc30a2..bda1643 100644
            const { name, vendor, version, appBuildID } = Services.appinfo;
 -          const info = { name, vendor, version, buildID: appBuildID };
 +          const useFirefoxDefaults = Services.prefs.getBoolPref(
-+            "librewolf.getBrowserInfo.setToFirefoxDefaults",
++            "sentinel.getBrowserInfo.setToFirefoxDefaults",
 +            true
 +          );
 +

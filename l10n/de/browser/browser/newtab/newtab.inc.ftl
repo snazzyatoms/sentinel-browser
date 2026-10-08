@@ -1,3 +1,3 @@
-librewolf-external-wallpapers =
+sentinel-external-wallpapers =
     .label = Aktiviere holen entfernter Hintergrundbilder
     .description = Dies benötigt einen Browserneustart

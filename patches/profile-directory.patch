@@ -19,7 +19,7 @@ index 66b3977..5469b51 100644
 +                     .getService(Ci.nsIProperties || Ci.nsIDirectoryService);
 +        let profDir = dirSvc.get("ProfD", Ci.nsIFile);
 +        let path = profDir.path || "";
-+        isLegacy = path.includes(".librewolf");
++        isLegacy = path.includes(".sentinel");
 +      }
 +
 +      if (!isLegacy) {
@@ -33,14 +33,14 @@ index 66b3977..5469b51 100644
 +        if (profile_directory) {
 +          defaults.setCharPref(
 +            "autoadmin.global_config_url",
-+            `file://${profile_directory}/librewolf/librewolf/librewolf.overrides.cfg`
++            `file://${profile_directory}/sentinel/sentinel/sentinel.overrides.cfg`
 +          );
 +        }
 +      } else {
 +        if (profile_directory = Services.env.get("HOME")) {
 +          defaults.setCharPref(
 +            "autoadmin.global_config_url",
-+            `file://${profile_directory}/.librewolf/librewolf.overrides.cfg`
++            `file://${profile_directory}/.sentinel/sentinel.overrides.cfg`
 +          );
 +        }
 +      }
@@ -48,7 +48,7 @@ index 66b3977..5469b51 100644
 +      if ((profile_directory = Services.env.get("USERPROFILE") || Services.env.get("HOME"))) {
 +        defaults.setCharPref(
 +          "autoadmin.global_config_url",
-+          `file://${profile_directory}/.librewolf/librewolf.overrides.cfg`
++          `file://${profile_directory}/.sentinel/sentinel.overrides.cfg`
 +        );
 +      }
 +    }

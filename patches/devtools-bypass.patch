@@ -30,7 +30,7 @@ index cdf6a84..ccdd19e 100644
     */
    onConsoleAPILogEvent(message) {
 -    if (!this.handler) {
-+    let disableConsole = Services.prefs.getBoolPref("librewolf.console.logging_disabled", false);
++    let disableConsole = Services.prefs.getBoolPref("sentinel.console.logging_disabled", false);
 +    if (!this.handler || disableConsole) {
        return;
      }
@@ -44,4 +44,4 @@ index 1b0ec26..942de1e 100644
   */
  makePrefTrackedFlag(exports, "testing", "devtools.testing");
 +
-+makePrefTrackedFlag(exports, "lwDetach", "librewolf.debugger.force_detach");
++makePrefTrackedFlag(exports, "lwDetach", "sentinel.debugger.force_detach");

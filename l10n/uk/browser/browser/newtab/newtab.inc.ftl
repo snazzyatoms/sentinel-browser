@@ -1,3 +1,3 @@
-librewolf-external-wallpapers =
+sentinel-external-wallpapers =
     .label = Увімкнути отримання віддалених шпалер.
     .description = Це потребує перезавантаження браузера

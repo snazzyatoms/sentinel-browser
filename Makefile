@@ -33,14 +33,14 @@ ext := .tar.gz
 ff_source_dir := firefox-$(version)
 ff_source_tarball := firefox-$(version).source.tar.xz
 
-lw_source_dir := librewolf-$(version)-$(release)
-lw_source_tarball := librewolf-$(version)-$(release).source$(ext)
+lw_source_dir := sentinel-$(version)-$(release)
+lw_source_tarball := sentinel-$(version)-$(release).source$(ext)
 
 help:
 
 	@echo "use: $(MAKE) [all] [check] [clean] [veryclean] [bootstrap] [build] [package] [run]"
 	@echo ""
-	@echo "  all         - Make LibreWolf source archive ${version}-${release}."
+	@echo "  all         - Make Sentinel source archive ${version}-${release}."
 	@echo ""
 	@echo "  check       - Check if there is a new version of Firefox."
 	@echo ""
@@ -52,10 +52,10 @@ help:
 	@echo ""
 	@echo "  fetch       - fetch Firefox source archive."
 	@echo "  dir         - extract Firefox and apply the patches, creating a"
-	@echo "                ready to build librewolf folder."
-	@echo "  build       - Build LibreWolf (requires bootstrapped build environment)."
-	@echo "  package     - Package LibreWolf (requires build)."
-	@echo "  run         - Run LibreWolf (requires build)."
+	@echo "                ready to build sentinel folder."
+	@echo "  build       - Build Sentinel (requires bootstrapped build environment)."
+	@echo "  package     - Package Sentinel (requires build)."
+	@echo "  run         - Run Sentinel (requires build)."
 	@echo ""
 	@echo "  check-patchfail - check patches for errors."
 	@echo "  check-fuzz      - check patches for fuzz."
@@ -67,7 +67,7 @@ help:
 	@echo ""
 	@echo "Maintainer commands:"
 	@echo ""
-	@echo "  patches   - Just make the LibreWolf source directory (download, extract, patch)"
+	@echo "  patches   - Just make the Sentinel source directory (download, extract, patch)"
 	@echo "  all       - build LW tarball"
 	@echo ""
 	@echo "  clean     - remove all cruft except LW source tree"
@@ -110,7 +110,7 @@ check:
 	mv -vf version.tmp version
 	@echo ""
 	@echo "Firefox version   : " $$(cat version)
-	@echo "LibreWolf release : " $$(cat release)
+	@echo "Sentinel release : " $$(cat release)
 	@echo ""
 
 # The actual build stuff
@@ -125,16 +125,16 @@ $(ff_source_tarball):
 	curl -so $(ff_source_tarball) "$(ff_source_url)"
 	gpg --verify $(ff_source_tarball).asc $(ff_source_tarball)
 
-$(lw_source_dir): $(ff_source_tarball) ./version ./release scripts/librewolf-patches.py assets/mozconfig assets/patches.txt
+$(lw_source_dir): $(ff_source_tarball) ./version ./release scripts/sentinel-patches.py assets/mozconfig assets/patches.txt
 	rm -rf $(ff_source_dir) $(lw_source_dir)
 	tar xf $(ff_source_tarball)
 	mv $(ff_source_dir) $(lw_source_dir)
-	python3 scripts/librewolf-patches.py $(version) $(release)
+	python3 scripts/sentinel-patches.py $(version) $(release)
 
 $(lw_source_tarball): $(lw_source_dir)
 	rm -f $(lw_source_tarball)
-	tar cf librewolf-$(version)-$(release).source.tar $(lw_source_dir)
-	pigz -6 librewolf-$(version)-$(release).source.tar
+	tar cf sentinel-$(version)-$(release).source.tar $(lw_source_dir)
+	pigz -6 sentinel-$(version)-$(release).source.tar
 	touch $(lw_source_dir)
 	sha256sum $(lw_source_tarball) > $(lw_source_tarball).sha256sum
 	cat $(lw_source_tarball).sha256sum
@@ -162,7 +162,7 @@ build: $(lw_source_dir)
 
 package:
 	(cd $(lw_source_dir) && cat browser/locales/shipped-locales | xargs ./mach package-multi-locale --locales)
-	cp -v $(lw_source_dir)/obj-*/dist/librewolf-$(version)-$(release).en-US.*.tar.xz .
+	cp -v $(lw_source_dir)/obj-*/dist/sentinel-$(version)-$(release).en-US.*.tar.xz .
 
 run:
 	(cd $(lw_source_dir) && ./mach run)
@@ -177,7 +177,7 @@ fixfuzz:
 
 # Docker
 
-build_image = librewolf-build-image
+build_image = sentinel-build-image
 
 docker-build-image:
 	docker build --no-cache -t $(build_image) - < assets/Dockerfile

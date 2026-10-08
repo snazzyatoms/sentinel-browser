@@ -8,7 +8,7 @@ index 5155b28..8dea266 100644
    init() {
 -    this.quickRestart = this.quickRestart.bind(this);
 -    this.addRestartShortcut();
-+    if (Services.prefs.getBoolPref("librewolf.devHelpers", false)) {
++    if (Services.prefs.getBoolPref("sentinel.devHelpers", false)) {
 +      this.quickRestart = this.quickRestart.bind(this);
 +      this.addRestartShortcut();
 +    }

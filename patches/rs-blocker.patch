@@ -244,13 +244,13 @@ index 70f77c9fcb..5149801e7b 100644
  
 +ChromeUtils.defineLazyGetter(lazy, "allowedCollections", () =>
 +  Services.prefs
-+    .getStringPref("librewolf.services.settings.allowedCollections", "")
++    .getStringPref("sentinel.services.settings.allowedCollections", "")
 +    .split(",")
 +);
 +
 +ChromeUtils.defineLazyGetter(lazy, "allowedCollectionsFromDump", () =>
 +  Services.prefs
-+    .getStringPref("librewolf.services.settings.allowedCollectionsFromDump", "")
++    .getStringPref("sentinel.services.settings.allowedCollectionsFromDump", "")
 +    .split(",")
 +);
 +

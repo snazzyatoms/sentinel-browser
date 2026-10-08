@@ -1,3 +1,3 @@
-librewolf-external-wallpapers =
+sentinel-external-wallpapers =
     .label = Online achtergronden downloaden
     .description = Dit vereist een herstart

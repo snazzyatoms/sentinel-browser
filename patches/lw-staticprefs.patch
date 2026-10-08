@@ -7,20 +7,20 @@ index e6ae7eaf77..edbb98bf96 100644
    mirror: always
  
 +#---------------------------------------------------------------------------
-+# Prefs starting with "librewolf."
++# Prefs starting with "sentinel."
 +#---------------------------------------------------------------------------
 +
-+- name: librewolf.jit.enabled-by-default
++- name: sentinel.jit.enabled-by-default
 +  type: bool
 +  value: true
 +  mirror: always
 +
-+- name: librewolf.webgl.prompt
++- name: sentinel.webgl.prompt
 +  type: RelaxedAtomicBool
 +  value: true
 +  mirror: always
 +
-+- name: librewolf.webgl.prompt.hide
++- name: sentinel.webgl.prompt.hide
 +  type: RelaxedAtomicBool
 +  value: true
 +  mirror: always
@@ -36,7 +36,7 @@ index 2c8b218c61..16805711b4 100644
      "javascript",
      "layers",
      "layout",
-+    "librewolf",
++    "sentinel",
      "logging",
      "mathml",
      "media",

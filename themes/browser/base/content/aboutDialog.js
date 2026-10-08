@@ -39,9 +39,9 @@ async function init(aEvent) {
   let versionField = document.getElementById("versionNumber");
   versionField.innerHTML = AppConstants.MOZ_APP_VERSION_DISPLAY;
 
-  // If pref "librewolf.aboutMenu.checkVersion" is set to true,
-  // check for new version with the link given in "librewolf.aboutMenu.versionCheckGitlabUrl"
-  if (Services.prefs.getBoolPref("librewolf.aboutMenu.checkVersion", false)) {
+  // If pref "sentinel.aboutMenu.checkVersion" is set to true,
+  // check for new version with the link given in "sentinel.aboutMenu.versionCheckGithubUrl"
+  if (Services.prefs.getBoolPref("sentinel.aboutMenu.checkVersion", false)) {
     let versionDiv = document.getElementById("version");
     const loader = document.createElement("div");
     loader.classList.add("loader");
@@ -68,8 +68,8 @@ async function init(aEvent) {
 
     fetch(
       Services.prefs.getStringPref(
-        "librewolf.aboutMenu.versionCheckGitlabUrl",
-        "https://librewolf.dev/api/v1/repos/librewolf/source/releases"
+        "sentinel.aboutMenu.versionCheckGithubUrl",
+        "https://api.github.com/repos/snazzyatoms/sentinel-browser/releases"
       )
     )
       .then(response => response.json())
@@ -79,8 +79,8 @@ async function init(aEvent) {
           if (isNewerVersion(latestVersion, AppConstants.MOZ_APP_VERSION_DISPLAY)) {
             const updateNotice = document.createElement("a");
             updateNotice.classList.add("text-link");
-            updateNotice.href = data[0]._links.self;
-            updateNotice.onclick = () => window.openWebLinkIn(data[0]._links.self, "tab")
+            updateNotice.href = data[0].html_url;
+            updateNotice.onclick = () => window.openWebLinkIn(data[0].html_url, "tab")
             updateNotice.innerText = "(Update available)";
             versionDiv.appendChild(updateNotice);
           } else {

@@ -46,7 +46,7 @@
         },
         "ExtensionSettings": {
             "*": {
-                "blocked_install_message": "LibreWolf does not allow installing Language Packs.",
+                "blocked_install_message": "Sentinel does not allow installing Language Packs.",
                 "installation_mode": "allowed",
                 "allowed_types": ["dictionary", "extension", "sitepermission", "theme"]
             },
@@ -79,8 +79,8 @@
         "OverridePostUpdatePage": "",
         "SkipTermsOfUse": true,
         "SupportMenu": {
-            "Title": "LibreWolf Issue Tracker",
-            "URL": "https://librewolf.dev/librewolf/issues"
+            "Title": "Sentinel Issue Tracker",
+            "URL": "https://github.com/snazzyatoms/sentinel-browser/issues"
         },
         "UserMessaging": {
             "UrlbarInterventions": false,

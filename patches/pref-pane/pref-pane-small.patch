@@ -6,7 +6,7 @@ index 6fd90b4..43d2421 100644
     content/browser/preferences/home.js
     content/browser/preferences/search.js
     content/browser/preferences/privacy.js
-+   content/browser/preferences/librewolf.js
++   content/browser/preferences/sentinel.js
     content/browser/preferences/sync.js
     content/browser/preferences/moreFromMozilla.js
     content/browser/preferences/fxaPairDevice.xhtml
@@ -18,7 +18,7 @@ index c76a064..845d0dc 100644
  /* import-globals-from home.js */
  /* import-globals-from search.js */
  /* import-globals-from privacy.js */
-+/* import-globals-from librewolf.js */
++/* import-globals-from sentinel.js */
  /* import-globals-from sync.js */
  /* import-globals-from moreFromMozilla.js */
  /* import-globals-from findInPage.js */
@@ -30,7 +30,7 @@ index 1b8c381..b5531ac 100644
    <link rel="stylesheet" href="chrome://browser/skin/preferences/search.css" />
    <link rel="stylesheet" href="chrome://browser/content/usercontext/usercontext.css" />
    <link rel="stylesheet" href="chrome://browser/skin/preferences/privacy.css" />
-+  <link rel="stylesheet" href="chrome://browser/skin/preferences/librewolf.css" />
++  <link rel="stylesheet" href="chrome://browser/skin/preferences/sentinel.css" />
    <link rel="stylesheet" href="chrome://browser/content/preferences/widgets/setting-group.css" />
    <link rel="stylesheet" href="chrome://browser/content/preferences/widgets/setting-pane.css" />
    <link rel="stylesheet" href="chrome://browser/content/preferences/widgets/setting-control.css" />
@@ -42,10 +42,10 @@ index 1b8c381..b5531ac 100644
 -        view="paneAi"
 -        iconsrc="chrome://global/skin/icons/highlights.svg"
 -        data-l10n-id="pane-ai-controls-title2">
-+      <html:moz-page-nav-button id="category-librewolf"
-+        view="paneLibrewolf"
-+        iconsrc="chrome://browser/skin/preferences/category-librewolf.svg"
-+        data-l10n-id="pane-librewolf-title2">
++      <html:moz-page-nav-button id="category-sentinel"
++        view="paneSentinel"
++        iconsrc="chrome://browser/skin/preferences/category-sentinel.svg"
++        data-l10n-id="pane-sentinel-title2">
        </html:moz-page-nav-button>
        <html:moz-page-nav-button id="category-permissions-data"
          view="panePermissionsData"
@@ -53,7 +53,7 @@ index 1b8c381..b5531ac 100644
  #include home.inc.xhtml
  #include search.inc.xhtml
  #include privacy.inc.xhtml
-+#include librewolf.inc.xhtml
++#include sentinel.inc.xhtml
  #include sync.inc.xhtml
  #include moreFromMozilla.inc.xhtml
          </vbox>
@@ -65,7 +65,7 @@ index c2bebf7e96..62ab632cec 100644
    skin/classic/browser/preferences/android-menu.svg            (../shared/preferences/android-menu.svg)
    skin/classic/browser/preferences/category-general.svg        (../shared/preferences/category-general.svg)
    skin/classic/browser/preferences/category-privacy-security.svg    (../shared/preferences/category-privacy-security.svg)
-+  skin/classic/browser/preferences/category-librewolf.svg    (../shared/preferences/category-librewolf.svg)
++  skin/classic/browser/preferences/category-sentinel.svg    (../shared/preferences/category-sentinel.svg)
    skin/classic/browser/preferences/category-search.svg         (../shared/preferences/category-search.svg)
    skin/classic/browser/preferences/category-sync.svg           (../shared/preferences/category-sync.svg)
    skin/classic/browser/preferences/containers.css              (../shared/preferences/containers.css)
@@ -73,7 +73,7 @@ index c2bebf7e96..62ab632cec 100644
    skin/classic/browser/preferences/vpn-logo.svg                (../shared/preferences/vpn-logo.svg)
    skin/classic/browser/preferences/search.css                  (../shared/preferences/search.css)
    skin/classic/browser/preferences/siteDataSettings.css        (../shared/preferences/siteDataSettings.css)
-+  skin/classic/browser/preferences/librewolf.css               (../shared/preferences/librewolf.css)
++  skin/classic/browser/preferences/sentinel.css               (../shared/preferences/sentinel.css)
    skin/classic/browser/translations/panel.css                  (../shared/translations/panel.css)
    skin/classic/browser/fxa/fxa-spinner.svg                     (../shared/fxa/fxa-spinner.svg)
    skin/classic/browser/fxa/sync-illustration.svg               (../shared/fxa/sync-illustration.svg)
@@ -85,76 +85,76 @@ index a8de115..f6885f1 100644
    startup: createStartupConfig(
      Services.prefs.getBoolPref("browser.settings-redesign.enabled", false)
    ),
-+  librewolfBehavior: {
-+    l10nId: "librewolf-general-heading2",
++  sentinelBehavior: {
++    l10nId: "sentinel-general-heading2",
 +    headingLevel: 2,
 +    items: [
 +      {
-+        id: "librewolfExtensionUpdate",
-+        l10nId: "librewolf-extension-update-checkbox2",
++        id: "sentinelExtensionUpdate",
++        l10nId: "sentinel-extension-update-checkbox2",
 +      },
 +      {
-+        id: "librewolfSync",
-+        l10nId: "librewolf-sync-checkbox2",
++        id: "sentinelSync",
++        l10nId: "sentinel-sync-checkbox2",
 +      },
 +      {
-+        id: "librewolfMiddleClick",
-+        l10nId: "librewolf-autocopy-checkbox2",
++        id: "sentinelMiddleClick",
++        l10nId: "sentinel-autocopy-checkbox2",
 +      },
 +      {
-+        id: "librewolfNova",
-+        l10nId: "librewolf-nova-checkbox2",
++        id: "sentinelNova",
++        l10nId: "sentinel-nova-checkbox2",
 +      },
 +      {
-+        id: "librewolfUserChrome",
-+        l10nId: "librewolf-styling-checkbox2",
++        id: "sentinelUserChrome",
++        l10nId: "sentinel-styling-checkbox2",
 +      },
 +    ],
 +  },
-+  librewolfNetworking: {
-+    l10nId: "librewolf-network-heading2",
++  sentinelNetworking: {
++    l10nId: "sentinel-network-heading2",
 +    headingLevel: 2,
 +    items: [
 +      {
-+        id: "librewolfIPv6",
-+        l10nId: "librewolf-ipv6-checkbox2",
++        id: "sentinelIPv6",
++        l10nId: "sentinel-ipv6-checkbox2",
 +      }
 +    ],
 +  },
-+  librewolfPrivacy: {
-+    l10nId: "librewolf-privacy-heading2",
++  sentinelPrivacy: {
++    l10nId: "sentinel-privacy-heading2",
 +    headingLevel: 2,
 +    items: [
 +      {
-+        id: "librewolfJIT",
-+        l10nId: "librewolf-jit-checkbox2",
++        id: "sentinelJIT",
++        l10nId: "sentinel-jit-checkbox2",
 +        supportPage: "jit-toggle",
 +      },
 +      {
-+        id: "librewolfCrossOrigin",
-+        l10nId: "librewolf-xorigin-ref-checkbox2",
++        id: "sentinelCrossOrigin",
++        l10nId: "sentinel-xorigin-ref-checkbox2",
 +      },
 +    ],
 +  },
-+  librewolfFingerprinting: {
-+    l10nId: "librewolf-broken-heading2",
++  sentinelFingerprinting: {
++    l10nId: "sentinel-broken-heading2",
 +    headingLevel: 2,
 +    items: [
 +      {
-+        id: "librewolfRFP",
-+        l10nId: "librewolf-rfp-checkbox2",
++        id: "sentinelRFP",
++        l10nId: "sentinel-rfp-checkbox2",
 +      },
 +      {
-+        id: "librewolfLetterboxing",
-+        l10nId: "librewolf-letterboxing-checkbox2",
++        id: "sentinelLetterboxing",
++        l10nId: "sentinel-letterboxing-checkbox2",
 +      },
 +      {
-+        id: "librewolfWebGLPrompt",
-+        l10nId: "librewolf-webgl-checkbox2",
++        id: "sentinelWebGLPrompt",
++        l10nId: "sentinel-webgl-checkbox2",
 +      },
 +      {
-+        id: "librewolfWebGLPromptHide",
-+        l10nId: "librewolf-webgl-prompt-checkbox2",
++        id: "sentinelWebGLPromptHide",
++        l10nId: "sentinel-webgl-prompt-checkbox2",
 +      },
 +    ],
 +  },

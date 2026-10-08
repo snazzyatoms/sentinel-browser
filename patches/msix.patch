@@ -1,4 +1,4 @@
-# LibreWolf msix.patch
+# Sentinel msix.patch
 #
 # Author:        Malte Jürgens <maltejur@dismail.de>
 # Description:   Allows us to build a msix for the Microsoft Store

@@ -7,14 +7,14 @@ index 6a2a200..14fea29 100644
  Preferences.addSetting({ id: "relatedSettingsBoxGroup" });
  
 +Preferences.addSetting({
-+  id: "librewolfRFPWarning",
-+  deps: ["librewolfRFP"],
-+  visible: ({librewolfRFP}) => {
++  id: "sentinelRFPWarning",
++  deps: ["sentinelRFP"],
++  visible: ({sentinelRFP}) => {
 +    const interval = setInterval(() => {
 +      const chooser = document.getElementById("web-appearance-chooser");
 +      if (chooser) {
 +        clearInterval(interval);
-+        if (librewolfRFP.value) {
++        if (sentinelRFP.value) {
 +          chooser.style.opacity = "0.3";
 +          chooser.style.pointerEvents = "none";
 +        } else {
@@ -23,7 +23,7 @@ index 6a2a200..14fea29 100644
 +        }
 +      }
 +    }, 100);
-+    return librewolfRFP.value;
++    return sentinelRFP.value;
 +  },
 +});
 +
@@ -35,8 +35,8 @@ index 6a2a200..14fea29 100644
          },
        },
 +      {
-+        id: "librewolfRFPWarning",
-+        l10nId: "librewolf-rfp-warning",
++        id: "sentinelRFPWarning",
++        l10nId: "sentinel-rfp-warning",
 +        supportPage: "rfp-theme",
 +        control: "moz-message-bar",
 +      },
