@@ -2,9 +2,9 @@
   <defs>
     <!-- Rim: bright top-left -> deep bottom-right (light from upper left) -->
     <linearGradient id="rim" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#7DD3FC"/>
-      <stop offset="0.45" stop-color="#38BDF8"/>
-      <stop offset="1" stop-color="#0E7490"/>
+      <stop offset="0" stop-color="#C4B5FD"/>
+      <stop offset="0.45" stop-color="#A78BFA"/>
+      <stop offset="1" stop-color="#5B21B6"/>
     </linearGradient>
     <!-- Shield body: deep navy vertical falloff -->
     <linearGradient id="body" x1="0" y1="0" x2="0" y2="1">
@@ -14,15 +14,15 @@
     </linearGradient>
     <!-- Iris: luminous core -> deep edge -->
     <radialGradient id="iris" cx="0.42" cy="0.38" r="0.75">
-      <stop offset="0" stop-color="#A5F3FC"/>
-      <stop offset="0.55" stop-color="#38BDF8"/>
-      <stop offset="1" stop-color="#155E75"/>
+      <stop offset="0" stop-color="#DDD6FE"/>
+      <stop offset="0.55" stop-color="#A78BFA"/>
+      <stop offset="1" stop-color="#4C1D95"/>
     </radialGradient>
     <!-- Ambient glow behind the eye -->
     <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
-      <stop offset="0" stop-color="#38BDF8" stop-opacity="0.28"/>
-      <stop offset="0.7" stop-color="#38BDF8" stop-opacity="0.08"/>
-      <stop offset="1" stop-color="#38BDF8" stop-opacity="0"/>
+      <stop offset="0" stop-color="#A78BFA" stop-opacity="0.28"/>
+      <stop offset="0.7" stop-color="#A78BFA" stop-opacity="0.08"/>
+      <stop offset="1" stop-color="#A78BFA" stop-opacity="0"/>
     </radialGradient>
     <!-- Top sheen -->
     <linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1">
@@ -39,7 +39,7 @@
   <!-- Shield body -->
   <path fill="url(#body)" d="M128 31 C160 31 187 37 199 47 C202 124 186 180 128 220 C70 180 54 124 57 47 C69 37 96 31 128 31 Z"/>
   <!-- Hairline inside the rim -->
-  <path fill="none" stroke="#38BDF8" stroke-opacity="0.35" stroke-width="1.4" d="M128 33.5 C158.5 33.5 184.5 39.3 196.5 49 C199.3 123 184.3 177.5 128 217 C71.7 177.5 56.7 123 59.5 49 C71.5 39.3 97.5 33.5 128 33.5 Z"/>
+  <path fill="none" stroke="#A78BFA" stroke-opacity="0.35" stroke-width="1.4" d="M128 33.5 C158.5 33.5 184.5 39.3 196.5 49 C199.3 123 184.3 177.5 128 217 C71.7 177.5 56.7 123 59.5 49 C71.5 39.3 97.5 33.5 128 33.5 Z"/>
 
   <g clip-path="url(#innerClip)">
     <!-- top sheen -->
@@ -50,7 +50,7 @@
 
   <!-- Eye socket: dark lens with thin accent stroke -->
   <path d="M82 114 Q128 76 174 114 Q128 152 82 114 Z"
-        fill="#050D1A" stroke="#38BDF8" stroke-width="4" stroke-linejoin="round"/>
+        fill="#050D1A" stroke="#A78BFA" stroke-width="4" stroke-linejoin="round"/>
   <!-- Iris + pupil + specular -->
   <circle cx="128" cy="114" r="23" fill="url(#iris)"/>
   <circle cx="128" cy="114" r="10" fill="#060D1C"/>
