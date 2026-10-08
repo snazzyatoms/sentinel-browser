@@ -2,10 +2,9 @@ diff --git a/modules/libpref/init/StaticPrefList.yaml b/modules/libpref/init/Sta
 index e6ae7eaf77..edbb98bf96 100644
 --- a/modules/libpref/init/StaticPrefList.yaml
 +++ b/modules/libpref/init/StaticPrefList.yaml
-@@ -12125,6 +12125,25 @@
-   value: true
+@@ -19414,6 +19414,24 @@
    mirror: always
- 
+
 +#---------------------------------------------------------------------------
 +# Prefs starting with "sentinel."
 +#---------------------------------------------------------------------------
@@ -24,19 +23,19 @@ index e6ae7eaf77..edbb98bf96 100644
 +  type: RelaxedAtomicBool
 +  value: true
 +  mirror: always
-+
+
  #---------------------------------------------------------------------------
- # Prefs starting with "logging."
+ # Prefs starting with "signon."
  #---------------------------------------------------------------------------
 diff --git a/modules/libpref/moz.build b/modules/libpref/moz.build
 index 2c8b218c61..16805711b4 100644
 --- a/modules/libpref/moz.build
 +++ b/modules/libpref/moz.build
-@@ -56,6 +56,7 @@ pref_groups = [
-     "javascript",
-     "layers",
-     "layout",
+@@ -75,6 +75,7 @@ pref_groups = [
+     "print",
+     "privacy",
+     "prompts",
+     "security",
 +    "sentinel",
-     "logging",
-     "mathml",
-     "media",
+     "signon",
+     "slider",
