@@ -18,6 +18,17 @@
       <stop offset="0.55" stop-color="ACCENT"/>
       <stop offset="1" stop-color="IRIS_LO"/>
     </radialGradient>
+    <!-- Rim hotspot: light catches the top-left edge -->
+    <radialGradient id="hotspot" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Socket inner shading: darker at the top -->
+    <linearGradient id="socket" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#02060F"/>
+      <stop offset="0.55" stop-color="#050D1A"/>
+      <stop offset="1" stop-color="#081226"/>
+    </linearGradient>
     <!-- Ambient glow behind the eye -->
     <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
       <stop offset="0" stop-color="ACCENT" stop-opacity="0.28"/>
@@ -36,6 +47,8 @@
 
   <!-- Shield rim -->
   <path fill="url(#rim)" d="M128 20 C164 20 196 27 210 38 C214 124 195 187 128 232 C61 187 42 124 46 38 C60 27 92 20 128 20 Z"/>
+  <!-- rim light catch -->
+  <ellipse cx="84" cy="34" rx="52" ry="26" fill="url(#hotspot)" transform="rotate(-18 84 34)"/>
   <!-- Shield body -->
   <path fill="url(#body)" d="M128 31 C160 31 187 37 199 47 C202 124 186 180 128 220 C70 180 54 124 57 47 C69 37 96 31 128 31 Z"/>
   <!-- Hairline inside the rim -->
@@ -48,11 +61,13 @@
     <ellipse cx="128" cy="116" rx="72" ry="48" fill="url(#glow)"/>
   </g>
 
-  <!-- Eye socket: dark lens with thin accent stroke -->
+  <!-- Eye socket: shaded lens with thin accent stroke -->
   <path d="M82 114 Q128 76 174 114 Q128 152 82 114 Z"
-        fill="#050D1A" stroke="ACCENT" stroke-width="4" stroke-linejoin="round"/>
-  <!-- Iris + pupil + specular -->
+        fill="url(#socket)" stroke="ACCENT" stroke-width="4" stroke-linejoin="round"/>
+  <!-- Iris + inner ring + pupil + specular -->
   <circle cx="128" cy="114" r="23" fill="url(#iris)"/>
+  <circle cx="128" cy="114" r="23" fill="none" stroke="IRIS_HI" stroke-opacity="0.55" stroke-width="1.6"/>
+  <circle cx="128" cy="114" r="15.5" fill="none" stroke="#060D1C" stroke-opacity="0.35" stroke-width="1.2"/>
   <circle cx="128" cy="114" r="10" fill="#060D1C"/>
   <circle cx="135.5" cy="105.5" r="3.8" fill="#FFFFFF" fill-opacity="0.85"/>
 </svg>
