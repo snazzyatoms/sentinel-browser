@@ -1,0 +1,37 @@
+diff --git a/browser/themes/linux/browser.css b/browser/themes/linux/browser.css
+--- a/browser/themes/linux/browser.css
++++ b/browser/themes/linux/browser.css
+@@ -3,8 +3,9 @@
+  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+ 
+ @import url("chrome://browser/skin/browser-shared.css");
+ @import url("chrome://browser/skin/contextmenu.css");
++@import url("chrome://browser/skin/sentinel-safari.css");
+ 
+ /**
+  * We still want to do some of the tweaks that browser-colors does, like
+  * disabling the toolbar field border and backgrounds.
+diff --git a/browser/themes/shared/jar.inc.mn b/browser/themes/shared/jar.inc.mn
+--- a/browser/themes/shared/jar.inc.mn
++++ b/browser/themes/shared/jar.inc.mn
+@@ -25,6 +25,7 @@
+   skin/classic/browser/notification-icons.css                  (../shared/notification-icons.css)
+   skin/classic/browser/pageInfo.css                            (../shared/pageInfo.css)
+   skin/classic/browser/sanitizeDialog_v2.css                   (../shared/sanitizeDialog_v2.css)
++  skin/classic/browser/sentinel-safari.css                     (../shared/sentinel-safari.css)
+   skin/classic/browser/setDesktopBackground.css                (../shared/setDesktopBackground.css)
+   skin/classic/browser/sharePanel.css                          (../shared/sharePanel.css)
+   skin/classic/browser/sidebar.css                             (../shared/sidebar.css)
+diff --git a/browser/themes/windows/browser.css b/browser/themes/windows/browser.css
+--- a/browser/themes/windows/browser.css
++++ b/browser/themes/windows/browser.css
+@@ -3,8 +3,9 @@
+  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+ 
+ @import url("chrome://browser/skin/browser-shared.css");
+ @import url("chrome://browser/skin/contextmenu.css");
++@import url("chrome://browser/skin/sentinel-safari.css");
+ 
+ #menubar-items {
+   flex-direction: column; /* for flex hack */
+   justify-content: normal; /* align the menubar to the top also in customize mode */

@@ -1,0 +1,229 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+/* Sentinel Safari-inspired chrome theme.
+ * Gated behind the sentinel.safariTheme pref (default on). */
+
+@media -moz-pref("sentinel.safariTheme") {
+
+  :root {
+    --safari-chrome: #ececee;
+    --safari-chrome-deep: #dcdce1;
+    --safari-strip: #d8d8de;
+    --safari-tab-idle: #cfcfd6;
+    --safari-tab-active: #ffffff;
+    --safari-field: #ffffff;
+    --safari-text: #1d1d1f;
+    --safari-secondary: #6e6e73;
+    --safari-accent: #0a84ff;
+    --safari-border: rgba(0, 0, 0, 0.09);
+    --safari-hover: rgba(0, 0, 0, 0.06);
+    --safari-active: rgba(0, 0, 0, 0.12);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --safari-chrome: #333337;
+      --safari-chrome-deep: #2a2a2e;
+      --safari-strip: #26262b;
+      --safari-tab-idle: #3a3a40;
+      --safari-tab-active: #45454c;
+      --safari-field: #3c3c42;
+      --safari-text: #f5f5f7;
+      --safari-secondary: #98989f;
+      --safari-accent: #409cff;
+      --safari-border: rgba(255, 255, 255, 0.12);
+      --safari-hover: rgba(255, 255, 255, 0.08);
+      --safari-active: rgba(255, 255, 255, 0.16);
+    }
+  }
+
+  /* ===== top chrome surface ===== */
+
+  #navigator-toolbox,
+  #titlebar {
+    background: var(--safari-chrome) !important;
+    color: var(--safari-text) !important;
+  }
+
+  #navigator-toolbox {
+    border-bottom: 1px solid var(--safari-border) !important;
+  }
+
+  /* ===== Safari layout: toolbar first, tab strip below ===== */
+
+  #nav-bar {
+    order: 1 !important;
+    background: var(--safari-chrome) !important;
+    box-shadow: none !important;
+    padding-block: 4px !important;
+  }
+
+  #TabsToolbar {
+    order: 2 !important;
+    background: var(--safari-strip) !important;
+    color: var(--safari-text);
+  }
+
+  #PersonalToolbar {
+    order: 3 !important;
+    background: var(--safari-chrome) !important;
+    color: var(--safari-text);
+    padding-block: 2px !important;
+  }
+
+  /* ===== toolbar buttons: flat, gray, soft hover ===== */
+
+  #nav-bar toolbarbutton,
+  #PersonalToolbar toolbarbutton,
+  #TabsToolbar toolbarbutton {
+    color: var(--safari-text) !important;
+    fill: var(--safari-text) !important;
+  }
+
+  #nav-bar toolbarbutton:not([disabled]):hover,
+  #PersonalToolbar toolbarbutton:not([disabled]):hover,
+  #TabsToolbar toolbarbutton:not([disabled]):hover {
+    background: var(--safari-hover) !important;
+    border-radius: 6px !important;
+  }
+
+  #nav-bar toolbarbutton:not([disabled]):hover:active,
+  #nav-bar toolbarbutton:not([disabled])[open] {
+    background: var(--safari-active) !important;
+  }
+
+  toolbarbutton[disabled] {
+    opacity: 0.35 !important;
+  }
+
+  /* ===== centered pill address bar ===== */
+
+  #nav-bar-customization-target {
+    display: flex;
+    align-items: center;
+  }
+
+  #urlbar-container {
+    max-width: 660px !important;
+    margin-inline: auto !important;
+    flex: 1 1 auto;
+  }
+
+  #urlbar {
+    --urlbar-min-height: 30px !important;
+    border-radius: 9px !important;
+    border: 1px solid var(--safari-border) !important;
+    box-shadow: none !important;
+  }
+
+  #urlbar[focused] {
+    border-color: var(--safari-accent) !important;
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--safari-accent) 28%, transparent) !important;
+  }
+
+  #urlbar-background,
+  #searchbar {
+    background: var(--safari-field) !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 9px !important;
+    color: var(--safari-text) !important;
+  }
+
+  #urlbar-input, #searchbar .searchbar-textbox {
+    color: var(--safari-text) !important;
+  }
+
+  #urlbar-input::placeholder {
+    color: var(--safari-secondary) !important;
+  }
+
+  /* slimmer identity/tracking icons row */
+  #identity-box, #tracking-protection-icon-container, #urlbar-go-button {
+    fill: var(--safari-secondary) !important;
+    color: var(--safari-secondary) !important;
+  }
+
+  /* ===== Safari tab strip ===== */
+
+  #tabbrowser-tabs {
+    min-height: 32px;
+  }
+
+  .tabbrowser-tab {
+    color: var(--safari-text) !important;
+  }
+
+  .tabbrowser-tab .tab-background {
+    border-radius: 8px 8px 0 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    margin: 4px 1px 0 !important;
+    background: var(--safari-tab-idle);
+    opacity: 1 !important;
+  }
+
+  .tabbrowser-tab[selected] .tab-background {
+    background: var(--safari-tab-active) !important;
+    border: 1px solid var(--safari-border) !important;
+    border-bottom-color: var(--safari-tab-active) !important;
+    box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.06) !important;
+  }
+
+  .tabbrowser-tab:hover:not([selected]) .tab-background {
+    background: color-mix(in srgb, var(--safari-tab-idle) 60%, var(--safari-tab-active)) !important;
+  }
+
+  .tab-label, .tab-text {
+    color: var(--safari-text) !important;
+  }
+
+  .tabbrowser-tab:not([selected]) .tab-label {
+    color: var(--safari-secondary) !important;
+  }
+
+  /* hairline between tabs like Safari's separated strip */
+  .tabbrowser-tab:not([selected]):not(:hover) {
+    border-inline-end: 1px solid var(--safari-border) !important;
+  }
+
+  .tab-close-button {
+    fill: var(--safari-secondary) !important;
+    border-radius: 4px !important;
+  }
+  .tab-close-button:hover {
+    background: var(--safari-hover) !important;
+    fill: var(--safari-text) !important;
+  }
+
+  /* new-tab "+" button in strip */
+  #tabs-newtab-button, #new-tab-button {
+    fill: var(--safari-secondary) !important;
+    color: var(--safari-secondary) !important;
+  }
+
+  /* ===== misc chrome polish ===== */
+
+  #PersonalToolbar .bookmark-item,
+  #nav-bar-customization-target > * {
+    color: var(--safari-text) !important;
+  }
+
+  /* panel/popup surfaces */
+  panel, menupopup {
+    --panel-background: var(--safari-tab-active);
+    --panel-color: var(--safari-text);
+    --panel-border-radius: 10px;
+    --panel-border-color: var(--safari-border);
+  }
+
+  /* sidebar matches the chrome */
+  #sidebar-box, #sidebar {
+    background: var(--safari-tab-active) !important;
+    color: var(--safari-text) !important;
+  }
+
+  /* status/tooltip surfaces keep native vars; leave them alone. */
+}

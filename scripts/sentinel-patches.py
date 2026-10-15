@@ -165,6 +165,13 @@ def sentinel_patches():
     exec('cp ../patches/pref-pane/sentinel.inc.xhtml browser/components/preferences/sentinel.inc.xhtml')
     exec('cp ../patches/pref-pane/sentinel.js browser/components/preferences/sentinel.js')
 
+    #
+    # Safari-inspired theme: registers sentinel-safari.css in the skin jar
+    # and imports it from the per-OS browser sheets. The stylesheet itself
+    # lands via ../themes/browser and is gated by the sentinel.safariTheme pref.
+    #
+    patch('../patches/sentinel-safari.patch')
+
     # provide a script that fetches and bootstraps Nightly and some mozconfigs
     exec('cp -v ../scripts/mozfetch.sh lw/')
     exec('cp -v ../assets/mozconfig.new lw/')
